@@ -1,22 +1,18 @@
 {
-  "name": "@typescript-library-template/core",
+  "name": "turing_machine",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/typescript-library-template-core.cjs.js",
-  "module": "dist/typescript-library-template-core.esm.js",
-  "types": "dist/typescript-library-template-core.cjs.d.ts",
+  "main": "dist/turing_machine.cjs.js",
+  "module": "dist/turing_machine.esm.js",
+  "types": "dist/turing_machine.cjs.d.ts",
   "preconstruct": {
     "entrypoints": [
-      "index.ts",
-      "module/index.ts"
+      "index.ts"
     ]
   },
   "files": [
     "src",
-    "dist",
-    "module",
-    "LICENSE",
-    "README.md"
+    "dist"
   ],
   "keywords": [
     "typescript"
@@ -35,7 +31,7 @@
     "@babel/runtime": "7.20.7"
   },
   "devDependencies": {
-    "typescript": "4.9.4"
+    "typescript": "^5.2.0"
   },
   "publishConfig": {
     "access": "public"

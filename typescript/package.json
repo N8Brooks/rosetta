@@ -2,7 +2,6 @@
   "private": true,
   "name": "typescript-library-template",
   "description": "",
-  "packageManager": "yarn@3.4.1",
   "scripts": {
     "postinstall": "preconstruct dev",
     "prepare": "simple-git-hooks",
@@ -17,10 +16,6 @@
     "changeset": "changeset",
     "version-apply": "changeset version",
     "release": "changeset publish"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "yarn lint-staged",
-    "post-commit": "git update-index --again"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
