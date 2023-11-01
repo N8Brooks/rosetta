@@ -10,18 +10,18 @@ describe("LinkedList", () => {
 
   describe("append", () => {
     it("should append items to the LinkedList", () => {
-      list.append(1);
-      list.append(2);
-      list.append(3);
+      list.push(1);
+      list.push(2);
+      list.push(3);
       expect([...list]).toEqual([1, 2, 3]);
     });
   });
 
   describe("pop", () => {
     it("should pop all items from the LinkedList", () => {
-      list.append(1);
-      list.append(2);
-      list.append(3);
+      list.push(1);
+      list.push(2);
+      list.push(3);
       expect(list.pop()).toBe(3);
       expect([...list]).toEqual([1, 2]);
       expect(list.pop()).toBe(2);
@@ -31,17 +31,17 @@ describe("LinkedList", () => {
     });
 
     it("should maintain links between nodes", () => {
-      list.append(1);
-      list.append(2);
-      list.append(3);
+      list.push(1);
+      list.push(2);
+      list.push(3);
       list.pop();
       expect([...list]).toEqual([1, 2]);
-      list.append(4);
+      list.push(4);
       expect([...list]).toEqual([1, 2, 4]);
     });
 
     it("should handle an empty list when popping", () => {
-      expect(list.pop()).toBeUndefined();
+      expect(() => list.pop()).toThrowError();
     });
   });
 
@@ -51,9 +51,9 @@ describe("LinkedList", () => {
     });
 
     it("should iterate correctly using the Symbol.iterator", () => {
-      list.append(1);
-      list.append(2);
-      list.append(3);
+      list.push(1);
+      list.push(2);
+      list.push(3);
       const it = list[Symbol.iterator]();
       expect(it.next().value).toBe(1);
       expect([...it]).toEqual([2, 3]);
@@ -66,8 +66,8 @@ describe("LinkedList", () => {
       if (Math.random() < 0.5) {
         const data = Math.floor(Math.random() * 1000);
         expected.push(data);
-        list.append(data);
-      } else {
+        list.push(data);
+      } else if (expected.length) {
         expect(list.pop()).toBe(expected.pop());
       }
       expect([...list]).toEqual(expected);

@@ -12,7 +12,7 @@ export class LinkedList<T> {
     return new LinkedListIterableIterator(this.#first);
   }
 
-  append(data: T) {
+  push(data: T) {
     const node = { data, prev: this.#last, next: undefined };
     if (this.#last) {
       this.#last.next = this.#last = node;
@@ -23,7 +23,7 @@ export class LinkedList<T> {
 
   pop() {
     if (!this.#last) {
-      return;
+      throw Error("Pop from empty list");
     }
     const { data } = this.#last;
     this.#last = this.#last.prev;
