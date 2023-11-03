@@ -1,5 +1,12 @@
-import { describe, it, expect, beforeEach } from "@jest/globals";
-import { LinkedList } from "../../src/iterator/linked_list"; // Import your LinkedList class here
+import {
+  assertEquals,
+  assertStrictEquals,
+  assertThrows,
+  beforeEach,
+  describe,
+  it,
+} from "./test_deps.ts";
+import { LinkedList } from "./linked_list.ts";
 
 describe("LinkedList", () => {
   let list: LinkedList<number>;
@@ -13,7 +20,7 @@ describe("LinkedList", () => {
       list.push(1);
       list.push(2);
       list.push(3);
-      expect([...list]).toEqual([1, 2, 3]);
+      assertEquals([...list], [1, 2, 3]);
     });
   });
 
@@ -22,12 +29,12 @@ describe("LinkedList", () => {
       list.push(1);
       list.push(2);
       list.push(3);
-      expect(list.pop()).toBe(3);
-      expect([...list]).toEqual([1, 2]);
-      expect(list.pop()).toBe(2);
-      expect([...list]).toEqual([1]);
-      expect(list.pop()).toBe(1);
-      expect([...list]).toEqual([]);
+      assertStrictEquals(list.pop(), 3);
+      assertEquals([...list], [1, 2]);
+      assertStrictEquals(list.pop(), 2);
+      assertEquals([...list], [1]);
+      assertStrictEquals(list.pop(), 1);
+      assertEquals([...list], []);
     });
 
     it("should maintain links between nodes", () => {
@@ -35,19 +42,19 @@ describe("LinkedList", () => {
       list.push(2);
       list.push(3);
       list.pop();
-      expect([...list]).toEqual([1, 2]);
+      assertEquals([...list], [1, 2]);
       list.push(4);
-      expect([...list]).toEqual([1, 2, 4]);
+      assertEquals([...list], [1, 2, 4]);
     });
 
     it("should handle an empty list when popping", () => {
-      expect(() => list.pop()).toThrowError();
+      assertThrows(() => list.pop());
     });
   });
 
   describe("iterator", () => {
     it("should create an empty LinkedList", () => {
-      expect([...list]).toEqual([]);
+      assertEquals([...list], []);
     });
 
     it("should iterate correctly using the Symbol.iterator", () => {
@@ -55,8 +62,8 @@ describe("LinkedList", () => {
       list.push(2);
       list.push(3);
       const it = list[Symbol.iterator]();
-      expect(it.next().value).toBe(1);
-      expect([...it]).toEqual([2, 3]);
+      assertStrictEquals(it.next().value, 1);
+      assertEquals([...it], [2, 3]);
     });
   });
 
@@ -68,9 +75,9 @@ describe("LinkedList", () => {
         expected.push(data);
         list.push(data);
       } else if (expected.length) {
-        expect(list.pop()).toBe(expected.pop());
+        assertStrictEquals(list.pop(), expected.pop());
       }
-      expect([...list]).toEqual(expected);
+      assertEquals([...list], expected);
     }
   });
 });

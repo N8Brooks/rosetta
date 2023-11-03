@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
-import { TuringMachine } from "../src";
+import { assertEquals, describe, it } from "./test_deps.ts";
+import { TuringMachine } from "./turing_machine.ts";
 
 describe("Turing's very first example", () => {
   const zeroOneSequence = new TuringMachine("b", [
@@ -37,14 +37,14 @@ describe("Turing's very first example", () => {
     const input: string[] = [];
     const actual = zeroOneSequence.perform(input, 4);
     const expected = ["0", "blank", "1", "blank", "blank"];
-    expect(actual).toEqual(expected);
+    assertEquals(actual, expected);
   });
 
   it("6 sequence", () => {
     const input: string[] = [];
     const actual = zeroOneSequence.perform(input, 6);
     const expected = ["0", "blank", "1", "blank", "0", "blank", "blank"];
-    expect(actual).toEqual(expected);
+    assertEquals(actual, expected);
   });
 });
 
@@ -68,13 +68,13 @@ describe("Increment unary number", () => {
 
   it("0 -> 1", () => {
     const actual = INCREMENT_UNARY_NUMBER.perform([]);
-    expect(actual).toEqual(["1"]);
+    assertEquals(actual, ["1"]);
   });
 
   it("3 -> 4", () => {
     const input = ["1", "1", "1"];
     const actual = INCREMENT_UNARY_NUMBER.perform(input);
     const expected = ["1", "1", "1", "1"];
-    expect(actual).toEqual(expected);
+    assertEquals(actual, expected);
   });
 });
