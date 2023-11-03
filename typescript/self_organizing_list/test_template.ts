@@ -4,70 +4,63 @@ import {
   assertStrictEquals,
   describe,
   it,
+  readTestCases,
 } from "../test_deps.ts";
 
 export type CreateSelfOrganizingList = <T>(arr: T[]) => SelfOrganizingList<T>;
 
+const { insert: INSERT_TEST_CASES, find: FIND_TEST_CASES } =
+  (await readTestCases("self_organizing_list")) as TestCases;
+
+type TestCases = { insert: InsertTestCases; find: FindTestCases };
+
+type InsertTestCases = Record<string, InsertTestCase>;
+type InsertTestCase = { input: number[]; insert: number; inner: number[] };
+
+type FindTestCases = Record<string, FindTestCase>;
+type FindTestCase = {
+  input: number[];
+  equals: number;
+  inner: number[];
+  expected?: number;
+};
+
 export function testTemplate(
   createSelfOrganizingList: CreateSelfOrganizingList,
 ) {
-  describe("insert", () => {
-    it("insert without elements", () => {
-      const list = createSelfOrganizingList<number>([]);
-      list.insert(1);
-      assertEquals(list.inner(), [1]);
-    });
+  describe("insert", () => insertTestTemplate(createSelfOrganizingList));
+  describe("find", () => findTestTemplate(createSelfOrganizingList));
+}
 
-    it("insert with elements", () => {
-      const list = createSelfOrganizingList([1, 2, 3]);
-      list.insert(4);
-      assertEquals(list.inner(), [4, 1, 2, 3]);
+function insertTestTemplate(
+  createSelfOrganizingList: CreateSelfOrganizingList,
+) {
+  for (
+    const [name, { input, insert, inner }] of Object.entries(
+      INSERT_TEST_CASES,
+    )
+  ) {
+    it(name, () => {
+      const list = createSelfOrganizingList<number>(input);
+      list.insert(insert);
+      assertEquals(list.inner(), inner);
     });
-  });
+  }
+}
 
-  describe("find", () => {
-    it("no elements", () => {
-      const list = createSelfOrganizingList([]);
-      const actual = list.find(() => true);
-      assertStrictEquals(actual, undefined);
-      assertEquals(list.inner(), []);
+function findTestTemplate(createSelfOrganizingList: CreateSelfOrganizingList) {
+  for (
+    const [name, { input, equals, inner, expected }] of Object.entries(
+      FIND_TEST_CASES,
+    )
+  ) {
+    it(name, () => {
+      const list = createSelfOrganizingList<number>(input);
+      const actual = list.find(eq(equals));
+      assertStrictEquals(actual, expected);
+      assertEquals(list.inner(), inner);
     });
-
-    it("first element", () => {
-      const list = createSelfOrganizingList([1, 2, 3]);
-      const actual = list.find(eq(1));
-      assertStrictEquals(actual, 1);
-      assertEquals(list.inner(), [1, 2, 3]);
-    });
-
-    it("middle element", () => {
-      const list = createSelfOrganizingList([1, 2, 3]);
-      const actual = list.find(eq(2));
-      assertStrictEquals(actual, 2);
-      assertEquals(list.inner(), [2, 1, 3]);
-    });
-
-    it("last element", () => {
-      const list = createSelfOrganizingList([1, 2, 3]);
-      const actual = list.find(eq(3));
-      assertStrictEquals(actual, 3);
-      assertEquals(list.inner(), [3, 1, 2]);
-    });
-
-    it("no match", () => {
-      const list = createSelfOrganizingList([1, 2, 3]);
-      const actual = list.find(eq(4));
-      assertStrictEquals(actual, undefined);
-      assertEquals(list.inner(), [1, 2, 3]);
-    });
-
-    it("no match and no elements", () => {
-      const list = createSelfOrganizingList([]);
-      const actual = list.find(eq(1));
-      assertStrictEquals(actual, undefined);
-      assertEquals(list.inner(), []);
-    });
-  });
+  }
 }
 
 function eq(num: number) {

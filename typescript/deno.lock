@@ -1,6 +1,10 @@
 {
   "version": "3",
   "remote": {
+    "https://deno.land/std@0.109.0/_util/assert.ts": "2f868145a042a11d5ad0a3c748dcf580add8a0dbc0e876eaa0026303a5488f58",
+    "https://deno.land/std@0.109.0/_util/deep_assign.ts": "2f394c1835c5a3a86a54b929efcd7645db77ace8bf60d7bd19311f01110f1269",
+    "https://deno.land/std@0.109.0/encoding/_toml/parser.ts": "7d4e4a6e6df35999ab47414a81f3bebe4fe5589b8b257f37a45015e3686b49b7",
+    "https://deno.land/std@0.109.0/encoding/toml.ts": "d5d737e39e232d0a8d4a85549d2d548f60e63346abc75d3fca1403bba474891c",
     "https://deno.land/std@0.205.0/assert/_constants.ts": "8a9da298c26750b28b326b297316cdde860bc237533b07e1337c021379e6b2a9",
     "https://deno.land/std@0.205.0/assert/_diff.ts": "58e1461cc61d8eb1eacbf2a010932bf6a05b79344b02ca38095f9b805795dc48",
     "https://deno.land/std@0.205.0/assert/_format.ts": "a69126e8a469009adf4cf2a50af889aca364c349797e63174884a52ff75cf4c7",
