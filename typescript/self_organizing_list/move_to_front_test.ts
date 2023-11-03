@@ -4,7 +4,7 @@ import {
   describe,
   it,
 } from "../test_deps.ts";
-import { Iterative } from "./iterative.ts";
+import { MoveToFront } from "./move_to_front.ts";
 
 function eq(num: number) {
   return (element: number) => element === num;
@@ -12,13 +12,13 @@ function eq(num: number) {
 
 describe("insert", () => {
   it("insert without elements", () => {
-    const list = new Iterative();
+    const list = new MoveToFront();
     list.insert(1);
     assertEquals([...list], [1]);
   });
 
   it("insert with elements", () => {
-    const list = new Iterative([1, 2, 3]);
+    const list = new MoveToFront([1, 2, 3]);
     list.insert(4);
     assertEquals([...list], [4, 1, 2, 3]);
   });
@@ -26,42 +26,42 @@ describe("insert", () => {
 
 describe("find", () => {
   it("no elements", () => {
-    const list = new Iterative();
+    const list = new MoveToFront();
     const actual = list.find(() => true);
     assertStrictEquals(actual, undefined);
     assertEquals([...list], []);
   });
 
   it("first element", () => {
-    const list = new Iterative([1, 2, 3]);
+    const list = new MoveToFront([1, 2, 3]);
     const actual = list.find(eq(1));
     assertStrictEquals(actual, 1);
     assertEquals([...list], [1, 2, 3]);
   });
 
   it("middle element", () => {
-    const list = new Iterative([1, 2, 3]);
+    const list = new MoveToFront([1, 2, 3]);
     const actual = list.find(eq(2));
     assertStrictEquals(actual, 2);
     assertEquals([...list], [2, 1, 3]);
   });
 
   it("last element", () => {
-    const list = new Iterative([1, 2, 3]);
+    const list = new MoveToFront([1, 2, 3]);
     const actual = list.find(eq(3));
     assertStrictEquals(actual, 3);
     assertEquals([...list], [3, 1, 2]);
   });
 
   it("no match", () => {
-    const list = new Iterative([1, 2, 3]);
+    const list = new MoveToFront([1, 2, 3]);
     const actual = list.find(eq(4));
     assertStrictEquals(actual, undefined);
     assertEquals([...list], [1, 2, 3]);
   });
 
   it("no match and no elements", () => {
-    const list = new Iterative([]);
+    const list = new MoveToFront([]);
     const actual = list.find(eq(1));
     assertStrictEquals(actual, undefined);
     assertEquals([...list], []);

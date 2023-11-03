@@ -1,12 +1,11 @@
-export class SelfOrganizingList<T> {
+export class Iterative<T> {
   #list: T[];
 
   constructor(iterable: Iterable<T> = []) {
     this.#list = [...iterable];
   }
 
-  // deno-lint-ignore no-explicit-any
-  find(test: (element: T) => any) {
+  find(test: (element: T) => boolean) {
     if (!this.#list.length) {
       return;
     }
@@ -31,17 +30,6 @@ export class SelfOrganizingList<T> {
     // No elements found, re-shift elements
     this.#list.shift();
     this.#list.push(a);
-  }
-
-  // deno-lint-ignore no-explicit-any
-  _find2(test: (element: T) => any) {
-    this.#list.forEach((element, i) => {
-      if (test(element)) {
-        this.#list.splice(i, 1);
-        this.#list.unshift(element);
-        return element;
-      }
-    });
   }
 
   insert(element: T) {
