@@ -1,6 +1,7 @@
 import {
   assertEquals,
   assertStrictEquals,
+  assertThrows,
   it,
   readTestCases,
 } from "../test_deps.ts";
@@ -32,4 +33,26 @@ export function testTemplate(createLinkedList: <T>() => LinkedList<T>) {
       }
     });
   }
+
+  it("pop from empty list", () => {
+    const list = createLinkedList();
+    assertThrows(() => list.pop());
+  });
+
+  it("fuzzing", () => {
+    const list = createLinkedList();
+    const expected: number[] = [];
+    for (let i = 0; i < 1000; i++) {
+      if (Math.random() < 0.5) {
+        const data = Math.floor(Math.random() * 1000);
+        expected.push(data);
+        list.push(data);
+      } else if (expected.length) {
+        assertStrictEquals(list.pop(), expected.pop());
+      } else {
+        assertThrows(() => list.pop());
+      }
+      assertEquals([...list], expected);
+    }
+  });
 }
