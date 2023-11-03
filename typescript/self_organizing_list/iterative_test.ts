@@ -1,5 +1,10 @@
-import { assertEquals, assertStrictEquals, describe, it } from "./test_deps.ts";
-import { SelfOrganizingList } from "./self_organizing_list.ts";
+import {
+  assertEquals,
+  assertStrictEquals,
+  describe,
+  it,
+} from "../test_deps.ts";
+import { SelfOrganizingList } from "./iterative.ts";
 
 function eq(num: number) {
   return (element: number) => element == num;

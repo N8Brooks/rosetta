@@ -1,4 +1,4 @@
-import { assertEquals, describe, it } from "./test_deps.ts";
+import { assertEquals, describe, it } from "../test_deps.ts";
 import { TuringMachine } from "./turing_machine.ts";
 
 describe("Turing's very first example", () => {

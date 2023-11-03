@@ -4,7 +4,7 @@ interface LinkedListNode<T> {
   next: LinkedListNode<T> | undefined;
 }
 
-export class LinkedList<T> {
+export class IterableIteratorLinkedList<T> {
   #first: LinkedListNode<T> | undefined;
   #last: LinkedListNode<T> | undefined;
 

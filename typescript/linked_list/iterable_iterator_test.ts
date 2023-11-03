@@ -5,14 +5,14 @@ import {
   beforeEach,
   describe,
   it,
-} from "./test_deps.ts";
-import { LinkedList } from "./linked_list.ts";
+} from "../test_deps.ts";
+import { IterableIteratorLinkedList } from "./iterable_iterator.ts";
 
 describe("LinkedList", () => {
-  let list: LinkedList<number>;
+  let list: IterableIteratorLinkedList<number>;
 
   beforeEach(() => {
-    list = new LinkedList<number>();
+    list = new IterableIteratorLinkedList<number>();
   });
 
   describe("append", () => {
