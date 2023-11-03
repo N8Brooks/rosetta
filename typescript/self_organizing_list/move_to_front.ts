@@ -1,8 +1,18 @@
-export class MoveToFront<T> {
+import { SelfOrganizingList } from "./self_organizing_list.ts";
+
+export class MoveToFront<T> implements SelfOrganizingList<T> {
   #list: T[];
 
-  constructor(iterable: Iterable<T> = []) {
-    this.#list = [...iterable];
+  constructor(arr: T[]) {
+    this.#list = [...arr];
+  }
+
+  static from<T>(arr: T[]): MoveToFront<T> {
+    return new MoveToFront(arr);
+  }
+
+  insert(element: T) {
+    this.#list.unshift(element);
   }
 
   find(test: (element: T) => boolean) {
@@ -16,13 +26,7 @@ export class MoveToFront<T> {
     }
   }
 
-  insert(element: T) {
-    this.#list.unshift(element);
-  }
-
-  *[Symbol.iterator]() {
-    for (const element of this.#list) {
-      yield element;
-    }
+  inner(): T[] {
+    return [...this.#list];
   }
 }

@@ -1,8 +1,18 @@
-export class Iterative<T> {
+import { SelfOrganizingList } from "./self_organizing_list.ts";
+
+export class Iterative<T> implements SelfOrganizingList<T> {
   #list: T[];
 
-  constructor(iterable: Iterable<T> = []) {
-    this.#list = [...iterable];
+  constructor(arr: T[]) {
+    this.#list = [...arr];
+  }
+
+  static from<T>(arr: T[]): Iterative<T> {
+    return new Iterative(arr);
+  }
+
+  insert(element: T) {
+    this.#list.unshift(element);
   }
 
   find(test: (element: T) => boolean) {
@@ -32,13 +42,7 @@ export class Iterative<T> {
     this.#list.push(a);
   }
 
-  insert(element: T) {
-    this.#list.unshift(element);
-  }
-
-  *[Symbol.iterator]() {
-    for (const element of this.#list) {
-      yield element;
-    }
+  inner(): T[] {
+    return [...this.#list];
   }
 }
