@@ -1,4 +1,4 @@
-import { SelfOrganizingList } from "./self_organizing_list.ts";
+import { SelfOrganizingList, Test } from "./self_organizing_list.ts";
 
 export class MoveToFront<T> implements SelfOrganizingList<T> {
   #list: T[];
@@ -15,7 +15,7 @@ export class MoveToFront<T> implements SelfOrganizingList<T> {
     this.#list.unshift(element);
   }
 
-  find(test: (element: T) => boolean) {
+  find(test: Test<T>) {
     for (let i = 0; i < this.#list.length; i++) {
       const element = this.#list[i];
       if (test(element)) {

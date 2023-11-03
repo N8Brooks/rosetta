@@ -3,8 +3,10 @@ export interface SelfOrganizingList<T> {
   insert(element: T): void;
 
   /** Find an element matching `test` from the list */
-  find(test: (element: T) => boolean): T | undefined;
+  find(test: Test<T>): T | undefined;
 
   /** Retrieve the inner list - used for testing */
   inner(): T[];
 }
+
+export type Test<T> = (element: T) => boolean;

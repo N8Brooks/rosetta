@@ -1,4 +1,4 @@
-import { SelfOrganizingList } from "./self_organizing_list.ts";
+import { SelfOrganizingList, Test } from "./self_organizing_list.ts";
 
 export class Iterative<T> implements SelfOrganizingList<T> {
   #list: T[];
@@ -15,7 +15,7 @@ export class Iterative<T> implements SelfOrganizingList<T> {
     this.#list.unshift(element);
   }
 
-  find(test: (element: T) => boolean) {
+  find(test: Test<T>) {
     if (!this.#list.length) {
       return;
     }
