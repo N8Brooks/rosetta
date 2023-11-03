@@ -1,10 +1,12 @@
+import { LinkedList } from "./linked_list.ts";
+
 interface LinkedListNode<T> {
   data: T;
   prev: LinkedListNode<T> | undefined;
   next: LinkedListNode<T> | undefined;
 }
 
-export class IterableIteratorLinkedList<T> {
+export class IterableIteratorList<T> implements LinkedList<T> {
   #first: LinkedListNode<T> | undefined;
   #last: LinkedListNode<T> | undefined;
 

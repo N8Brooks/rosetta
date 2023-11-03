@@ -1,0 +1,83 @@
+push_pop = [
+  { iter = [
+  ] },
+  { push = 0 },
+  { iter = [
+    0,
+  ] },
+  { pop = 0 },
+  { iter = [
+  ] },
+]
+
+push_push_pop_pop = [
+  { push = 1 },
+  { push = 2 },
+  { iter = [
+    1,
+    2,
+  ] },
+  { pop = 2 },
+  { pop = 1 },
+  { iter = [
+  ] },
+]
+
+push_pop_push_pop = [
+  { push = 1 },
+  { iter = [
+    1,
+  ] },
+  { pop = 1 },
+  { iter = [
+  ] },
+  { push = 2 },
+  { iter = [
+    2,
+  ] },
+  { pop = 2 },
+  { iter = [
+  ] },
+]
+
+push_pop_push_push = [
+  { push = 2 },
+  { iter = [
+    2,
+  ] },
+  { pop = 2 },
+  { iter = [
+  ] },
+  { push = 3 },
+  { iter = [
+    3,
+  ] },
+  { push = 4 },
+  { iter = [
+    3,
+    4,
+  ] },
+]
+
+push_push_push_pop = [
+  { push = 3 },
+  { iter = [
+    3,
+  ] },
+  { push = 2 },
+  { iter = [
+    3,
+    2,
+  ] },
+  { push = 1 },
+  { iter = [
+    3,
+    2,
+    1,
+  ] },
+  { pop = 1 },
+  { iter = [
+    3,
+    2,
+  ] },
+]
