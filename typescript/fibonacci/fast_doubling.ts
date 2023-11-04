@@ -1,4 +1,7 @@
 export function fastDoubling(n: number): bigint {
+  if (n < 0) {
+    throw Error(`${n} is a negative number`);
+  }
   if (n <= 1) {
     return 1n;
   }
