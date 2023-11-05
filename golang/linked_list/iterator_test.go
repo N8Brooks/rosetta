@@ -1,4 +1,4 @@
-package iterator
+package linked_list
 
 import (
 	"math/rand"

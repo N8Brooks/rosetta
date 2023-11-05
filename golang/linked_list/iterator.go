@@ -1,4 +1,4 @@
-package iterator
+package linked_list
 
 type LinkedList[T any] struct {
 	first *linkedListNode[T]
