@@ -9,7 +9,7 @@ import (
 
 func ReadTestCases[T interface{}](filename string) T {
 	var testCases T
-	filePath := filepath.Join("..", "..", "test_data", filename, "test_cases.toml")
+	filePath := filepath.Join("..", "..", "testdata", filename, "test_cases.toml")
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		panic(err)
