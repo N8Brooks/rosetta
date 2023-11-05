@@ -1,4 +1,4 @@
-package design_patterns
+package iterator
 
 type LinkedList[T any] struct {
 	first *linkedListNode[T]
